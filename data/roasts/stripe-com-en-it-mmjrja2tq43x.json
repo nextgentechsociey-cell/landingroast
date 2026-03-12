@@ -1,0 +1,30 @@
+{
+  "slug": "stripe-com-en-it-mmjrja2tq43x",
+  "url": "https://stripe.com/en-it",
+  "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+  "headline": "Financial infrastructure to grow your revenue. Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.",
+  "ctas": [
+    "Products",
+    "Solutions",
+    "Developers",
+    "Resources",
+    "Back",
+    "Accept and optimise payments globally – online and in person",
+    "Enable any billing modelPro PlanBilled monthlyTokens€0.01 per 1,000 unitsUsage meterTokens used in the last 30 days",
+    "Monetise through agentic commerce"
+  ],
+  "analysis": {
+    "conversion_score": 70,
+    "headline_feedback": "The headline clearly communicates the core value proposition but is slightly lengthy; consider simplifying for quicker comprehension and stronger impact.",
+    "cta_feedback": "The CTAs are too numerous and somewhat generic, which can overwhelm visitors; focus on one primary CTA with clear action-oriented language to guide user behavior effectively.",
+    "messaging_feedback": "The messaging highlights the product capabilities but lacks emotional appeal and differentiation; adding customer-centric benefits and clearer outcomes would improve engagement.",
+    "design_feedback": "The content layout appears cluttered with mixed elements like pricing and usage metrics intermixed with CTAs, which can distract users; a cleaner hierarchy and segmentation would enhance readability and focus.",
+    "improvements": [
+      "Simplify the headline to a concise statement with a clear benefit.",
+      "Consolidate CTAs to one or two primary actions using clear, compelling language.",
+      "Segment pricing and usage information away from main CTAs to avoid cognitive overload and improve visual hierarchy."
+    ],
+    "roast": "Looks like Stripe tried to do a dozen things at once and ended up doing none of them clearly—clean it up before customers click away confused."
+  },
+  "createdAt": "2026-03-09T22:38:48.005Z"
+}

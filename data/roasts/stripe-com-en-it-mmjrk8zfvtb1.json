@@ -1,0 +1,30 @@
+{
+  "slug": "stripe-com-en-it-mmjrk8zfvtb1",
+  "url": "https://stripe.com/en-it",
+  "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+  "headline": "Financial infrastructure to grow your revenue. Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.",
+  "ctas": [
+    "Products",
+    "Solutions",
+    "Developers",
+    "Resources",
+    "Back",
+    "Accept and optimise payments globally – online and in person",
+    "Enable any billing modelPro PlanBilled monthlyTokens€0.01 per 1,000 unitsUsage meterTokens used in the last 30 days",
+    "Monetise through agentic commerce"
+  ],
+  "analysis": {
+    "conversion_score": 70,
+    "headline_feedback": "The headline clearly states the value proposition focusing on revenue growth through financial infrastructure, which is strong; however, it could be more customer-centric by highlighting specific benefits rather than features.",
+    "cta_feedback": "The CTA buttons are clear but numerous and somewhat generic, which can cause decision paralysis; focusing on the primary conversion action with fewer, more targeted CTAs would improve clarity and user direction.",
+    "messaging_feedback": "Messaging is informative and comprehensive but feels technical and broad; incorporating more relatable language and customer-centric benefits could enhance engagement and clarity for diverse audiences.",
+    "design_feedback": "The provided content suggests a lot of information without clear visual hierarchy or emphasis on key CTAs, which may overwhelm users; a cleaner layout with prioritized messaging and prominent CTAs would improve user experience.",
+    "improvements": [
+      "Simplify the number of CTA buttons to focus on primary conversion goals such as 'Get Started' or 'Request a Demo'.",
+      "Rewrite headlines and key messaging to emphasize customer benefits and outcomes instead of just features.",
+      "Improve visual hierarchy by using design elements to highlight the main value proposition and CTAs, reducing cognitive load on the visitor."
+    ],
+    "roast": "This landing page tries to do everything at once, ending up like a Swiss Army knife that’s great at confusing visitors instead of cutting through the noise."
+  },
+  "createdAt": "2026-03-09T22:39:33.243Z"
+}

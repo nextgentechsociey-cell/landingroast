@@ -1,0 +1,57 @@
+{
+  "slug": "www-kikocosmetics-com-it-it-mmkp7vodpc29",
+  "url": "https://www.kikocosmetics.com/it-it/",
+  "title": "Make up occhi, viso e labbra e cura della pelle | KIKO",
+  "headline": "KIKO",
+  "ctas": [
+    {
+      "cta": "MILANO CORTINA 2026",
+      "type": "secondary"
+    },
+    {
+      "cta": "IL NOSTRO BRAND",
+      "type": "secondary"
+    },
+    {
+      "cta": "Il nostro impatto",
+      "type": "secondary"
+    },
+    {
+      "cta": "ANIMALI",
+      "type": "secondary"
+    },
+    {
+      "cta": "Scopri di più",
+      "type": "secondary"
+    }
+  ],
+  "analysis": {
+    "conversion_score": 44,
+    "clarity": 55,
+    "cta_strength": 30,
+    "trust": 40,
+    "copywriting": 50,
+    "headline_feedback": "The headline 'KIKO' is too generic and does not communicate the product or its value, which reduces immediate clarity. Adding a specific benefit or product category would help visitors instantly understand the offer. Consider including product category or unique selling points in the headline to increase clarity.",
+    "cta_feedback": "All CTA buttons are labeled as 'secondary' and their texts like 'MILANO CORTINA 2026' or 'ANIMALI' are unclear and unrelated to direct user actions or conversion goals. They lack compelling action verbs and do not guide visitors effectively toward conversion. Reduce the number of CTAs to a single primary one with a clear, benefit-focused action verb prominently displayed above the fold.",
+    "messaging_feedback": "The messaging focuses on brand values and product qualities but remains vague without addressing specific customer pain points or benefits. It lacks direct appeals to customer desires or clear differentiation from competitors. The message should be sharpened to highlight how KIKO meets specific makeup and skincare needs better than alternatives.",
+    "design_feedback": "From the copy structure, the visual hierarchy seems flat with a generic H1, a somewhat helpful H2, and multiple secondary CTAs that compete for attention instead of guiding the user. Prioritizing a single clear headline and a stronger primary CTA visually distinct would improve the flow and focus of the page.",
+    "improvements": [
+      "Rewrite the main headline to communicate specific product benefits and target audience needs clearly.",
+      "Replace multiple secondary CTAs with one prominent, benefit-driven primary CTA that uses strong action verbs and is placed above the fold.",
+      "Add specific trust signals such as testimonials with names, recognisable logos, or concrete metrics to build credibility."
+    ],
+    "improved_headlines": [
+      "Find Your Perfect Makeup Shade and Skincare Solution",
+      "Professional Makeup and Skincare Tailored for You",
+      "Discover Quality Makeup with 49 Shades to Match"
+    ],
+    "improved_ctas": [
+      "Shop Your Shade",
+      "Explore Products Now",
+      "Get Started Today"
+    ],
+    "rewritten_hero_paragraph": "Struggling to find makeup and skincare that truly match your style and needs? Discover KIKO's iconic, high-quality products that blend research and style for an experience you can trust every day.",
+    "roast": "The landing page suffers from vague branding and direction with a generic headline and weak, unrelated CTAs. This lack of focus is a missed opportunity to communicate strong value propositions and to guide visitors toward conversion effectively."
+  },
+  "createdAt": "2026-03-10T14:21:43.069Z"
+}

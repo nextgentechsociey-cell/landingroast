@@ -1,0 +1,30 @@
+{
+  "slug": "stripe-com-en-it-mmjryfv0qgxr",
+  "url": "https://stripe.com/en-it",
+  "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+  "headline": "Financial infrastructure to grow your revenue. Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.",
+  "ctas": [
+    "Products",
+    "Solutions",
+    "Developers",
+    "Resources",
+    "Back",
+    "Accept and optimise payments globally – online and in person",
+    "Enable any billing modelPro PlanBilled monthlyTokens€0.01 per 1,000 unitsUsage meterTokens used in the last 30 days",
+    "Monetise through agentic commerce"
+  ],
+  "analysis": {
+    "conversion_score": 70,
+    "headline_feedback": "The headline clearly communicates the core value proposition but is somewhat generic and could be more benefit-driven by emphasizing unique advantages or outcomes for the user.",
+    "cta_feedback": "The CTAs are numerous and somewhat scattered, which can dilute the primary action you want users to take. Simplifying and prioritizing CTAs would improve focus and conversion potential.",
+    "messaging_feedback": "Messaging covers key offerings but lacks a strong emotional or user-centric appeal. Incorporating more customer-centric language and clarity around specific business models or use cases could enhance relevance and engagement.",
+    "design_feedback": "From the description, the design appears content-heavy with multiple CTA and info points that could overwhelm visitors. A cleaner layout with visual hierarchy and distinct sections would improve usability and conversion.",
+    "improvements": [
+      "Refine the headline to highlight specific benefits or unique selling points that resonate emotionally with target users.",
+      "Consolidate CTA buttons to focus on primary user goals, potentially using one or two clear, compelling CTAs.",
+      "Simplify and segment messaging to target distinct customer segments or use cases, using clearer, benefit-oriented language."
+    ],
+    "roast": "Stripe’s landing page tries to be everything for everyone but ends up like a crowded buffet—too many options, too little clear direction. Simplify before you scare off customers."
+  },
+  "createdAt": "2026-03-09T22:50:35.341Z"
+}

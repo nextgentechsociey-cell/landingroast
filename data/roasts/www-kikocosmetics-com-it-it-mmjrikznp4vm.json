@@ -1,0 +1,30 @@
+{
+  "slug": "www-kikocosmetics-com-it-it-mmjrikznp4vm",
+  "url": "https://www.kikocosmetics.com/it-it/",
+  "title": "Make up occhi, viso e labbra e cura della pelle | KIKO",
+  "headline": "KIKO",
+  "ctas": [
+    "it | it",
+    "Make Up",
+    "Cura della pelle",
+    "Solari",
+    "Accessori",
+    "Profumi",
+    "Capelli",
+    "Novità"
+  ],
+  "analysis": {
+    "conversion_score": 65,
+    "headline_feedback": "The title and H2 are clear and highlight a wide range of products, but the H1 'KIKO' alone is too generic and misses an opportunity to reinforce brand promise or a unique selling proposition.",
+    "cta_feedback": "The CTA buttons are diverse and cover several categories, but lack a compelling, action-oriented prompt (e.g., 'Shop Now', 'Discover Your Shade'), which could improve click-through rates.",
+    "messaging_feedback": "The main paragraph text communicates brand values and product attributes, but it is somewhat generic and could benefit from more emotionally engaging language and clearer benefits focused on the user.",
+    "design_feedback": "The page would benefit from stronger visual hierarchy; currently, the lack of a descriptive H1 and the diluted CTA labeling may cause confusion. Adding imagery or product highlights would enhance user engagement and clarity.",
+    "improvements": [
+      "Revise the H1 to include a clear, benefit-focused headline that complements the brand name.",
+      "Refine CTA buttons with action-driven text to encourage immediate user interaction.",
+      "Enhance the main paragraph with more customer-centric language and integrate visual elements to support messaging."
+    ],
+    "roast": "If this landing page were a makeup look, it'd be the one where you forget the mascara – basics covered, but it’s missing the dramatic spark that grabs attention and makes you want more."
+  },
+  "createdAt": "2026-03-09T22:38:15.491Z"
+}

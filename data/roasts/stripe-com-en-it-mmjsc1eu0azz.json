@@ -1,0 +1,30 @@
+{
+  "slug": "stripe-com-en-it-mmjsc1eu0azz",
+  "url": "https://stripe.com/en-it",
+  "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+  "headline": "Financial infrastructure to grow your revenue. Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.",
+  "ctas": [
+    {
+      "cta": "Get started",
+      "type": "primary"
+    },
+    {
+      "cta": "Sign up with Google",
+      "type": "primary"
+    }
+  ],
+  "analysis": {
+    "conversion_score": 75,
+    "headline_feedback": "Headline is clear and communicates value by focusing on revenue growth and financial infrastructure, scoring 18/25 as it could be more benefit-driven and emotionally compelling.",
+    "cta_feedback": "CTAs are straightforward but generic; 'Get started' lacks urgency or a unique value proposition. Including 'Sign up with Google' is convenient, adding inclusivity. Overall, a 17/25 due to moderate call to action focus and clarity.",
+    "messaging_feedback": "Messaging is clear and concise, explaining Stripe’s main offerings effectively. However, it is somewhat generic and doesn't address specific pain points or differentiators strongly, resulting in 20/25.",
+    "design_feedback": "Design appears straightforward with clear hierarchy and easy navigation implied by the text, likely supporting visual simplicity well. Without visual details, a cautious 20/25 is assigned due to expected simplicity from the text layout.",
+    "improvements": [
+      "Make headline more benefit and emotion-driven to enhance user resonance and attract attention.",
+      "Improve CTA text to reflect urgency or unique benefits, e.g., 'Start Growing Revenue Today' or 'Instant Setup'.",
+      "Incorporate specific customer pain points or unique value propositions in messaging to differentiate from competitors."
+    ],
+    "roast": "This landing page tries to say a lot but plays it safe—it's like ordering a BLT and getting just bread and mayo. Spice it up, make me hungry for what you offer!"
+  },
+  "createdAt": "2026-03-09T23:01:09.799Z"
+}

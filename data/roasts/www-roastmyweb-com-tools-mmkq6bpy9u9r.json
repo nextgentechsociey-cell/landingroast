@@ -1,0 +1,36 @@
+{
+  "slug": "www-roastmyweb-com-tools-mmkq6bpy9u9r",
+  "url": "https://www.roastmyweb.com/tools",
+  "title": "Free Website Tools | ROI, SEO, and Social Generators",
+  "headline": "Free Website Tools",
+  "ctas": [],
+  "analysis": {
+    "conversion_score": 38,
+    "clarity": 65,
+    "cta_strength": 0,
+    "trust": 30,
+    "copywriting": 55,
+    "headline_feedback": "The headline Free Website Tools clearly indicates that tools are offered for free, which is good for clarity. However, it is generic and does not specify what type of tools or what benefits users gain, making it vague. Enhancing the headline with a concrete benefit or specific tool types would improve immediate understanding.",
+    "cta_feedback": "There are no calls to action detected on the page, which is a critical issue for conversion. Without any CTA, visitors have no clear next step, leading to lost engagement opportunities. Adding prominent, benefit-oriented CTAs with strong verbs is essential to guide users toward desired actions.",
+    "messaging_feedback": "The messaging touches on useful website tools related to ROI, SEO, and social media meta tags, which aligns with the target audience's needs. However, the language is abstract and lacks actionable or benefit-driven detail, reducing its persuasive power. More explicit explanation of how these tools help users would strengthen positioning.",
+    "design_feedback": "With an H1 and H2 but no visible CTAs or other elements noted, the visual hierarchy seems minimal and incomplete. The structure does not guide the eye toward conversion or build trust through social proof. Introducing clear focal points such as bold CTAs and trust indicators would improve flow and engagement.",
+    "improvements": [
+      "Add clear, prominent CTAs using strong action verbs that direct users to try or download the tools immediately.",
+      "Rewrite headlines and hero text to explicitly communicate benefits and solve common visitor problems with the tools.",
+      "Incorporate trust elements such as testimonials, usage statistics, or logos of known customers to boost credibility."
+    ],
+    "improved_headlines": [
+      "Boost Website Growth with Free ROI and SEO Tools",
+      "Easily Improve Your Website ROI and SEO Today",
+      "Free Tools to Maximize Website Traffic and Revenue"
+    ],
+    "improved_ctas": [
+      "Start Using Tools",
+      "Try Free Tools",
+      "Boost Your Results"
+    ],
+    "rewritten_hero_paragraph": "Struggling to prioritize your website improvements? Our free tools forecast impact and help you focus on growth activities that deliver the best ROI.",
+    "roast": "The biggest weakness is the complete absence of calls to action, which leaves visitors stranded without guidance and kills any chance for conversions. Fixing this alone would dramatically transform the page from a passive information dump into an actionable user experience."
+  },
+  "createdAt": "2026-03-10T14:48:30.166Z"
+}

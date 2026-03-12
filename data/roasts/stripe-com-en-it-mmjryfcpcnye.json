@@ -1,0 +1,30 @@
+{
+  "slug": "stripe-com-en-it-mmjryfcpcnye",
+  "url": "https://stripe.com/en-it",
+  "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+  "headline": "Financial infrastructure to grow your revenue. Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.",
+  "ctas": [
+    "Products",
+    "Solutions",
+    "Developers",
+    "Resources",
+    "Back",
+    "Accept and optimise payments globally – online and in person",
+    "Enable any billing modelPro PlanBilled monthlyTokens€0.01 per 1,000 unitsUsage meterTokens used in the last 30 days",
+    "Monetise through agentic commerce"
+  ],
+  "analysis": {
+    "conversion_score": 75,
+    "headline_feedback": "The headline clearly states the value proposition and includes key benefits, but it could be more concise for easier scanning and immediate impact.",
+    "cta_feedback": "The CTA buttons cover a broad range of user intents but lack a prominent primary CTA that directs users toward a clear next step, which may dilute conversion focus.",
+    "messaging_feedback": "The messaging communicates the platform's versatility and comprehensive capabilities well, but could be improved by simplifying technical jargon and highlighting unique differentiators more prominently.",
+    "design_feedback": "The design includes relevant information but appears cluttered with multiple CTAs and pricing details that may overwhelm visitors. A cleaner, more focused layout would enhance user experience.",
+    "improvements": [
+      "Simplify the headline to a more concise, impactful statement focusing on core benefits.",
+      "Streamline CTA options by highlighting one or two primary actions to guide users clearly.",
+      "Reduce on-page technical details and pricing upfront, moving these to dedicated sections or secondary pages to avoid information overload."
+    ],
+    "roast": "Looks like Stripe tried to fit the entire financial encyclopedia on one page—overloaded with options and tech terms, it's more likely to confuse customers than convert them."
+  },
+  "createdAt": "2026-03-09T22:50:34.682Z"
+}

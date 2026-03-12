@@ -1,0 +1,30 @@
+{
+  "slug": "stripe-com-en-it-mmjrjaf39v43",
+  "url": "https://stripe.com/en-it",
+  "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+  "headline": "Financial infrastructure to grow your revenue. Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.",
+  "ctas": [
+    "Products",
+    "Solutions",
+    "Developers",
+    "Resources",
+    "Back",
+    "Accept and optimise payments globally – online and in person",
+    "Enable any billing modelPro PlanBilled monthlyTokens€0.01 per 1,000 unitsUsage meterTokens used in the last 30 days",
+    "Monetise through agentic commerce"
+  ],
+  "analysis": {
+    "conversion_score": 75,
+    "headline_feedback": "The headline clearly communicates the core benefit and scope of Stripe's services, but it could be simplified for quicker comprehension and stronger impact.",
+    "cta_feedback": "The CTAs are somewhat generic and lack a prominent, action-oriented focus; reorganizing and prioritizing primary user actions would enhance clarity and drive conversions.",
+    "messaging_feedback": "The messaging is comprehensive but occasionally too technical and jargon-heavy, which may overwhelm new visitors. Simplifying language and focusing on key value propositions could improve engagement.",
+    "design_feedback": "The presence of multiple buttons and pricing info in the same area can clutter the design and distract users. A cleaner, more focused layout with clear visual hierarchy would improve user experience and conversion potential.",
+    "improvements": [
+      "Simplify the headline to focus on a single, powerful benefit to grab attention instantly.",
+      "Consolidate CTAs by emphasizing the primary action you want visitors to take, using more compelling language like 'Get Started' or 'See How It Works'.",
+      "Reduce on-page complexity by removing extraneous pricing details and organizing content with whitespace to guide visitor focus."
+    ],
+    "roast": "This landing page tries to be everything to everyone but ends up like a buffet with too many dishes—leaving visitors confused about what to dig into first."
+  },
+  "createdAt": "2026-03-09T22:38:48.447Z"
+}

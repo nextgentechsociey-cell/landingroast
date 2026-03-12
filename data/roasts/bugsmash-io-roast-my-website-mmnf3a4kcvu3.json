@@ -1,0 +1,130 @@
+{
+  "slug": "bugsmash-io-roast-my-website-mmnf3a4kcvu3",
+  "url": "https://bugsmash.io/roast-my-website/",
+  "title": "Roast Website with AI – Roast My Website Tool",
+  "headline": "Roast Your Website Instantly With Our AI-Powered Tool",
+  "ctas": [
+    {
+      "cta": "Roast My Landing Now",
+      "type": "secondary"
+    }
+  ],
+  "analysis": {
+    "conversion_score": 59,
+    "score_breakdown": {
+      "hero_clarity": 75,
+      "cta_strength": 55,
+      "trust_signals": 35,
+      "copywriting": 65,
+      "design_hierarchy": 60,
+      "friction": 55
+    },
+    "missing_conversion_elements": [
+      "pricing tables",
+      "testimonials"
+    ],
+    "weak_elements": [
+      "buttons"
+    ],
+    "strong_elements": [
+      "hero text",
+      "forms",
+      "logos",
+      "images",
+      "navigation"
+    ],
+    "key_insights": [
+      "The primary CTA is labeled as secondary and is not strongly differentiated or benefit-driven, reducing clarity and urgency.",
+      "There is a lack of visible trust signals such as testimonials, logos, or specific credibility markers near the CTA to build confidence.",
+      "The visual hierarchy does not clearly guide the visitor from the headline to the CTA, causing some distraction and ambiguity about the next step."
+    ],
+    "headline_feedback": "The headline clearly states the offer but could be more benefit-focused or outcome-oriented to immediately hook visitors. Adding a concrete result or transformation would help visitor comprehension. For example, specify what the roast achieves beyond 'instantly' to give it more weight.",
+    "cta_feedback": "The CTA text 'Roast My Landing Now' is action-oriented but is marked as secondary and visually less prominent, which weakens its impact. A primary, bold CTA should be visible above the fold with more benefit-led wording such as 'Get Your Free Website Roast.'",
+    "trust_feedback": "The page lacks visible trust signals such as endorsements, user counts, or testimonials near the CTA, leaving visitors uncertain about credibility. Adding specific testimonials with names or logos of known clients would significantly boost trust.",
+    "copy_feedback": "The copy is conversational and partially benefit-focused but could be sharper and more concrete on the outcomes and unique value. Avoid vague phrases like 'fun, brutally honest' which may confuse some users. Instead, highlight specific actionable insights gained.",
+    "messaging_feedback": "The message positions the tool as a unique AI-powered roast that is both fun and practical, but it risks alienating users unfamiliar with the term 'roast'. Clarify that this is a constructive website critique designed to boost performance for site owners and marketers.",
+    "design_feedback": "The layout lacks a smooth visual flow from headline to CTA, with no clear focal point dominating above the fold. The CTA button’s secondary styling and the use of multiple headings create visual noise that competes for attention instead of guiding it.",
+    "improvements": [
+      "Promote the primary CTA text with benefit-driven copy and make its styling prominent above the fold to increase conversions.",
+      "Add clear, specific trust signals near the CTA, such as user testimonials, client logos, or success metrics, to build credibility instantly.",
+      "Refine the headline to communicate a sharper, outcome-focused benefit that clarifies the product’s unique value proposition at a glance."
+    ],
+    "conversion_fixes": [
+      {
+        "title": "Upgrade CTA prominence",
+        "problem": "Primary CTA is styled as secondary and is not visually prominent, reducing click-throughs.",
+        "solution": "Make the primary CTA distinct, larger, and positioned above the fold with benefit-focused text to draw immediate attention.",
+        "expected_conversion_impact": "Likely 10–20% uplift in demo requests due to improved visibility and clarity of next step."
+      },
+      {
+        "title": "Add trust signals",
+        "problem": "No testimonials, logos, or statistics near the CTA to reassure visitors of the tool’s credibility.",
+        "solution": "Add 2–3 short testimonials with names or logos of recognizable users/companies near the CTA section.",
+        "expected_conversion_impact": "Expected 5–15% increase in leads due to enhanced visitor trust."
+      },
+      {
+        "title": "Rewrite headline for clearer benefit",
+        "problem": "Headline is generic and does not articulate a strong, differentiated value or specific outcome.",
+        "solution": "Rewrite headline to emphasize the actionable benefits and results users will gain from using the tool.",
+        "expected_conversion_impact": "Potential 7–12% uplift in user engagement from clearer messaging."
+      },
+      {
+        "title": "Clarify messaging around 'roast'",
+        "problem": "The term 'roast' may confuse users who interpret it as mocking rather than constructive feedback.",
+        "solution": "Add a brief subheading or tooltip explaining that the roast means actionable website critique for improvement.",
+        "expected_conversion_impact": "5–10% uplift by reducing hesitation or misunderstanding."
+      },
+      {
+        "title": "Improve visual flow",
+        "problem": "The page layout does not direct users smoothly from headline to CTA, causing attention scatter.",
+        "solution": "Simplify above-the-fold content, reduce competing headings, and create a strong visual path to the CTA button.",
+        "expected_conversion_impact": "Likely 5–8% conversion increase through better scanning and reduced friction."
+      }
+    ],
+    "improved_headlines": [
+      "Get Instant AI-Powered Website Feedback That Boosts Performance",
+      "Identify Your Website’s Weaknesses with a Free AI Audit",
+      "Unlock Actionable Insights to Improve Your Website Today"
+    ],
+    "improved_ctas": [
+      "Get My Free Roast",
+      "Start Your Website Audit",
+      "Claim Your Free Review"
+    ],
+    "rewritten_hero_paragraph": "Struggling to pinpoint why your website isn’t performing? Our AI-powered tool gives you a clear, actionable audit with honest insights to help you improve quickly and confidently.",
+    "roast": "Your website’s unique selling point is lost in vague phrasing—focus on crystal-clear benefits and a bold, visible CTA to turn browsers into leads.",
+    "structured_scores": {
+      "clarity": {
+        "score": 7,
+        "reason": "Headline and text communicate the service but lack strong clarity on specific benefits and outcomes."
+      },
+      "value_proposition": {
+        "score": 6,
+        "reason": "The promise to provide a 'fun' and 'brutally honest roast' is unique but not concrete or differentiated enough for many visitors."
+      },
+      "cta_strength": {
+        "score": 5,
+        "reason": "The call-to-action is present but too weak, generic, and visually deprioritized to drive immediate action."
+      },
+      "trust_signals": {
+        "score": 3,
+        "reason": "There are no visible trust elements like testimonials or brand logos, resulting in low credibility."
+      },
+      "visual_hierarchy": {
+        "score": 6,
+        "reason": "The page has some structure but the visual flow is inconsistent and the CTA is not clearly prioritized."
+      },
+      "friction": {
+        "score": 5,
+        "reason": "Some friction exists from unclear next steps and multiple competing elements above the fold."
+      }
+    },
+    "structured_rewrites": {
+      "headline": "Get Instant AI-Powered Website Feedback That Boosts Performance",
+      "hero": "Struggling to pinpoint why your website isn’t performing? Our AI-powered tool gives you a clear, actionable audit with honest insights to help you improve quickly and confidently.",
+      "cta": "Get My Free Roast",
+      "value_prop": "Receive a fast, AI-driven website audit with actionable insights to enhance your online impact."
+    }
+  },
+  "createdAt": "2026-03-12T12:01:30.884Z"
+}

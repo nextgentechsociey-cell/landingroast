@@ -1,0 +1,30 @@
+{
+  "slug": "stripe-com-en-it-mmjrk8zhovbi",
+  "url": "https://stripe.com/en-it",
+  "title": "Stripe | Financial Infrastructure to Grow Your Revenue",
+  "headline": "Financial infrastructure to grow your revenue. Accept payments, offer financial services and implement custom revenue models – from your first transaction to your billionth.",
+  "ctas": [
+    "Products",
+    "Solutions",
+    "Developers",
+    "Resources",
+    "Back",
+    "Accept and optimise payments globally – online and in person",
+    "Enable any billing modelPro PlanBilled monthlyTokens€0.01 per 1,000 unitsUsage meterTokens used in the last 30 days",
+    "Monetise through agentic commerce"
+  ],
+  "analysis": {
+    "conversion_score": 70,
+    "headline_feedback": "The headline clearly communicates the core value proposition but could be more concise to increase immediate comprehension and impact.",
+    "cta_feedback": "The CTAs are too many and somewhat generic, which can overwhelm visitors; focusing on one primary CTA per page would improve clarity and conversion potential.",
+    "messaging_feedback": "The messaging explains the product features broadly; however, stronger emphasis on specific benefits and customer outcomes would better engage potential users.",
+    "design_feedback": "The design feels cluttered due to overlapping elements like multiple CTAs and pricing details; simplifying the layout with clearer hierarchy will enhance user experience.",
+    "improvements": [
+      "Consolidate CTAs to a single, prominent button that aligns with the primary business goal.",
+      "Refine the headline to be shorter and more benefit-driven, e.g., 'Grow Revenue Seamlessly with Stripe’s Financial Infrastructure.'",
+      "Simplify the page layout by reducing text density and organizing information into easily scannable sections to improve readability."
+    ],
+    "roast": "This landing page tries to be everything to everyone—resulting in a cluttered, confused sales pitch that might leave visitors wondering if Stripe’s product is financial tech or a DIY kit for bureaucracy."
+  },
+  "createdAt": "2026-03-09T22:39:33.245Z"
+}
