@@ -3,8 +3,6 @@
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Suspense, useEffect, useState } from "react"
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
-import "react-circular-progressbar/dist/styles.css"
 import type { AnalysisResponse } from "@/lib/analyzeLanding"
 import type { RoastAnalysis } from "@/lib/roasts"
 import UrlInput from "@/components/UrlInput"
@@ -94,7 +92,22 @@ function Card({ children }: { children: React.ReactNode }) {
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-lg font-semibold text-white">{children}</h2>
+  return <h2 className="text-lg font-semibold text-white tracking-tight">{children}</h2>
+}
+
+function SeverityBadge({ level }: { level: "High" | "Medium" | "Low" }) {
+  const classes =
+    level === "High"
+      ? "border-red-500/40 bg-red-500/10 text-red-300"
+      : level === "Medium"
+        ? "border-amber-500/40 bg-amber-500/10 text-amber-300"
+        : "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
+
+  return (
+    <span className={`rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${classes}`}>
+      {level}
+    </span>
+  )
 }
 
 function ErrorBanner({ message }: { message: string }) {
@@ -175,74 +188,140 @@ function LoadingState({ url }: { url: string }) {
   )
 }
 
-function ScoreSection({ score }: { score: number }) {
+function LandingPageScoreSection({ score }: { score: number }) {
   const { label, color } = gradeInfo(score)
   const animatedScore = useAnimatedNumber(score, 1200)
+  const clamped = Math.max(0, Math.min(100, animatedScore))
 
   return (
     <Card>
-      <SectionTitle>Score</SectionTitle>
-      <div className="flex flex-col items-center gap-4 py-2">
-        <div className="h-44 w-44">
-          <CircularProgressbar
-            value={animatedScore}
-            maxValue={100}
-            text={`${animatedScore}`}
-            styles={buildStyles({
-              pathColor: color,
-              trailColor: "#262626",
-              textColor: "#f8fafc",
-              textSize: "20px",
-              pathTransitionDuration: 0.8,
-            })}
-          />
+      <SectionTitle>Landing Page Score</SectionTitle>
+      <div className="mt-3 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
+        <div
+          className="text-4xl font-bold sm:text-5xl"
+          style={{ color }}
+        >
+          {animatedScore}
         </div>
-        <p className="text-sm font-semibold uppercase tracking-wider" style={{ color }}>
-          {label}
-        </p>
+        <div className="flex-1">
+          <div className="h-3 w-full rounded-full bg-slate-800">
+            <div
+              className="h-3 rounded-full"
+              style={{
+                width: `${clamped}%`,
+                backgroundColor: color,
+              }}
+            />
+          </div>
+          <div className="mt-2 flex items-center justify-between gap-2">
+            <p className="text-xs text-slate-400">
+              Based on UX, copywriting, trust signals, and conversion heuristics.
+            </p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              {label}
+            </p>
+          </div>
+        </div>
       </div>
     </Card>
   )
 }
 
-function SnapshotImage({ snapshot }: { snapshot: string }) {
+function StickyTopSummary({ analysis }: { analysis: RoastAnalysis }) {
+  const quickMetrics = [
+    { label: "Hero Clarity", value: analysis.score_breakdown.hero_clarity },
+    { label: "CTA Strength", value: analysis.score_breakdown.cta_strength },
+    { label: "Trust Signals", value: analysis.score_breakdown.trust_signals },
+  ]
+
+  return (
+    <div className="sticky top-4 z-20 rounded-2xl border border-slate-800/80 bg-slate-950/90 p-4 shadow-xl shadow-black/25 backdrop-blur">
+      <div className="grid gap-4 sm:grid-cols-[220px_1fr] sm:items-center">
+        <div className="rounded-xl border border-slate-800 bg-slate-900/70 p-4">
+          <p className="text-xs uppercase tracking-wider text-slate-500">Overall Score</p>
+          <p className="mt-1 text-4xl font-bold text-white">{analysis.conversion_score}</p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {quickMetrics.map((metric) => {
+            const status = breakdownStatus(metric.value)
+            return (
+              <div key={metric.label} className="rounded-xl border border-slate-800 bg-slate-900/70 p-3">
+                <div className="mb-1.5 flex items-center justify-between">
+                  <p className="text-xs text-slate-400">{metric.label}</p>
+                  <p className={`text-xs font-semibold ${status.textClass}`}>{metric.value}</p>
+                </div>
+                <div className="h-1.5 rounded-full bg-slate-800">
+                  <div className={`h-1.5 rounded-full ${status.barClass}`} style={{ width: `${metric.value}%` }} />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SnapshotImage({ snapshotUrl }: { snapshotUrl: string }) {
   const [state, setState] = useState<"loading" | "loaded" | "error">("loading")
 
   return (
-    <div className="space-y-3">
-      {state === "loading" && (
-        <p className="text-sm text-slate-400">Capturing landing page snapshot...</p>
-      )}
-      <img
-        src={snapshot}
-        alt="Landing page snapshot"
-        className={`w-full rounded-xl border border-neutral-800 shadow-lg shadow-black/30 transition-opacity duration-300 ${
-          state === "loaded" ? "opacity-100" : "opacity-0"
-        }`}
-        loading="lazy"
-        onLoad={() => setState("loaded")}
-        onError={() => setState("error")}
-      />
-      {state === "error" && (
-        <p className="text-sm text-slate-400">Snapshot unavailable for this analysis.</p>
-      )}
+    <div className="mt-12">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold">Landing Page Snapshot</h2>
+        <span className="text-sm text-gray-500">Scrollable preview</span>
+      </div>
+
+      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div className="flex items-center gap-2 border-b border-gray-200 bg-gray-50 px-4 py-3">
+          <div className="h-3 w-3 rounded-full bg-red-400" />
+          <div className="h-3 w-3 rounded-full bg-yellow-400" />
+          <div className="h-3 w-3 rounded-full bg-green-400" />
+          <div className="ml-3 text-xs text-gray-500">Page preview</div>
+        </div>
+
+        <div className="h-[650px] overflow-y-auto bg-white">
+          <img
+            src={snapshotUrl}
+            alt="Landing page snapshot"
+            className={`w-full object-top transition-opacity duration-300 ${
+              state === "loaded" ? "opacity-100" : "opacity-0"
+            }`}
+            loading="lazy"
+            onLoad={() => setState("loaded")}
+            onError={() => setState("error")}
+          />
+        </div>
+      </div>
+      {state === "loading" && <p className="mt-3 text-sm text-slate-400">Capturing landing page snapshot...</p>}
+      {state === "error" && <p className="mt-3 text-sm text-slate-400">Snapshot unavailable for this analysis.</p>}
     </div>
   )
 }
 
 function SnapshotSection({ snapshot }: { snapshot?: string }) {
-
   return (
-    <Card>
-      <SectionTitle>Landing Page Snapshot</SectionTitle>
-      {snapshot ? (
-        <SnapshotImage key={snapshot} snapshot={snapshot} />
-      ) : (
-        <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 text-sm text-slate-400">
-          Snapshot unavailable for this analysis.
+    snapshot ? (
+      <SnapshotImage key={snapshot} snapshotUrl={snapshot} />
+    ) : (
+      <div className="mt-12">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold">Landing Page Snapshot</h2>
+          <span className="text-sm text-gray-500">Scrollable preview</span>
         </div>
-      )}
-    </Card>
+        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+          <div className="flex items-center gap-2 border-b border-gray-200 bg-gray-50 px-4 py-3">
+            <div className="h-3 w-3 rounded-full bg-red-400" />
+            <div className="h-3 w-3 rounded-full bg-yellow-400" />
+            <div className="h-3 w-3 rounded-full bg-green-400" />
+            <div className="ml-3 text-xs text-gray-500">Page preview</div>
+          </div>
+          <div className="h-[650px] overflow-y-auto bg-white p-4">
+            <p className="text-sm text-slate-500">Snapshot unavailable for this analysis.</p>
+          </div>
+        </div>
+      </div>
+    )
   )
 }
 
@@ -324,7 +403,11 @@ function KeyInsightsSection({ analysis }: { analysis: RoastAnalysis }) {
       <SectionTitle>Key Insights</SectionTitle>
       <div className="space-y-3">
         {(analysis.key_insights ?? []).map((insight, i) => (
-          <div key={i} className="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <div key={i} className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 space-y-2">
+            <div className="flex items-center justify-between">
+              <p className="text-xs uppercase tracking-wider text-slate-500">Insight {i + 1}</p>
+              <SeverityBadge level={i === 0 ? "High" : i === 1 ? "Medium" : "Low"} />
+            </div>
             <p className="text-sm leading-relaxed text-slate-200">{insight}</p>
           </div>
         ))}
@@ -340,7 +423,10 @@ function ConversionFixesSection({ fixes }: { fixes: RoastAnalysis["conversion_fi
       <div className="space-y-4">
         {fixes.map((fix, i) => (
           <div key={i} className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 space-y-2">
-            <p className="text-base font-semibold text-white">{fix.title}</p>
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-base font-semibold text-white">{fix.title}</p>
+              <SeverityBadge level={i < 2 ? "High" : i < 4 ? "Medium" : "Low"} />
+            </div>
             <p className="text-sm text-slate-400">Problem: {fix.problem}</p>
             <p className="text-sm text-slate-300">Solution: {fix.solution}</p>
             <p className="text-sm text-emerald-300">Impact: {fix.expected_conversion_impact}</p>
@@ -452,7 +538,8 @@ function AnalyzePageContent() {
             <LoadingState key={activeUrl} url={activeUrl} />
           ) : analysis ? (
             <div className="space-y-6">
-              <ScoreSection score={analysis.conversion_score} />
+              <StickyTopSummary analysis={analysis} />
+              <LandingPageScoreSection score={analysis.conversion_score} />
               <SnapshotSection snapshot={analysis.page_snapshot || result?.page_snapshot} />
               <ConversionSummarySection analysis={analysis} />
               <TopFixesSection fixes={(analysis.top_fixes && analysis.top_fixes.length === 3) ? analysis.top_fixes : analysis.improvements.slice(0, 3)} />
