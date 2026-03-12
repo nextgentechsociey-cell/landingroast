@@ -1,41 +1,37 @@
-import { chromium } from "playwright"
+import puppeteer from "puppeteer"
 
-/**
- * Capture a full-page PNG screenshot and return it as a base64 string.
- * Fails gracefully by returning an empty string on any error.
- */
-export async function captureScreenshot(url: string): Promise<string> {
-  let browser: Awaited<ReturnType<typeof chromium.launch>> | null = null
-
+export async function captureScreenshot(url: string): Promise<string | null> {
   try {
-    browser = await chromium.launch({ headless: true })
+    const browser = await puppeteer.launch({
+      headless: "new",
+      channel: "chrome",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    })
+
     const page = await browser.newPage()
 
+    await page.setViewport({
+      width: 1280,
+      height: 800,
+    })
+
     await page.goto(url, {
-      waitUntil: "networkidle",
-      timeout: 30_000,
+      waitUntil: "networkidle2",
+      timeout: 60_000,
     })
 
-    // Reasonable desktop viewport; fullPage will capture full height.
-    await page.setViewportSize({ width: 1440, height: 900 })
-
-    const buffer = await page.screenshot({
-      type: "png",
+    const screenshot = await page.screenshot({
+      type: "jpeg",
       fullPage: true,
+      quality: 80,
     })
 
-    return buffer.toString("base64")
-  } catch {
-    // Fail gracefully: caller can detect empty string and ignore screenshot.
-    return ""
-  } finally {
-    if (browser) {
-      try {
-        await browser.close()
-      } catch {
-        // ignore close errors
-      }
-    }
+    await browser.close()
+
+    const base64 = Buffer.from(screenshot).toString("base64")
+    return `data:image/jpeg;base64,${base64}`
+  } catch (error) {
+    console.error("Screenshot error:", error)
+    return null
   }
 }
-

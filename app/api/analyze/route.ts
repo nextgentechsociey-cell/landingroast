@@ -1,4 +1,6 @@
 import { analyzeLanding } from "@/lib/analyzeLanding"
+import { captureScreenshot } from "@/lib/screenshot"
+import { NextResponse } from "next/server"
 
 // ─── In-memory rate limiter ───────────────────────────────────────────────────
 // Resets on server restart; sufficient for a launch-day MVP.
@@ -119,7 +121,25 @@ export async function POST(req: Request) {
 
     const result = await analyzeLanding(parsed.href, Boolean(roastMode), goalStr, fullSiteFlag)
 
-    return Response.json(result, {
+    let screenshot: string | null = null
+    try {
+      screenshot = await captureScreenshot(parsed.href)
+    } catch {
+      screenshot = null
+    }
+
+    const withSnapshot = {
+      ...result,
+      page_snapshot: screenshot,
+      analysis: result.analysis
+        ? {
+            ...result.analysis,
+            page_snapshot: screenshot ?? result.analysis.page_snapshot ?? null,
+          }
+        : result.analysis,
+    }
+
+    return NextResponse.json(withSnapshot, {
       headers: { "X-RateLimit-Remaining": String(remaining) },
     })
   } catch {

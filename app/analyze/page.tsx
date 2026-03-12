@@ -27,18 +27,62 @@ function gradeInfo(score: number): { label: string; color: string } {
   return { label: "Poor", color: "#ef4444" }
 }
 
-function barColor(v: number) {
-  if (v >= 75) return "bg-green-500"
-  if (v >= 60) return "bg-yellow-400"
-  if (v >= 45) return "bg-orange-400"
-  return "bg-red-500"
+function valueColor(v: number) {
+  if (v > 60) return "text-green-400"
+  if (v >= 40) return "text-orange-400"
+  return "text-red-400"
 }
 
-function valueColor(v: number) {
-  if (v >= 75) return "text-green-400"
-  if (v >= 60) return "text-yellow-400"
-  if (v >= 45) return "text-orange-400"
-  return "text-red-400"
+function breakdownStatus(v: number): { label: "Good" | "Needs Improvement" | "Needs Attention"; barClass: string; textClass: string } {
+  if (v > 60) {
+    return { label: "Good", barClass: "bg-green-500", textClass: "text-green-400" }
+  }
+  if (v >= 40) {
+    return { label: "Needs Improvement", barClass: "bg-orange-500", textClass: "text-orange-400" }
+  }
+  return { label: "Needs Attention", barClass: "bg-red-500", textClass: "text-red-400" }
+}
+
+function metricIssueLabel(metric: keyof RoastAnalysis["score_breakdown"]) {
+  if (metric === "cta_strength") return "weak CTA clarity"
+  if (metric === "trust_signals") return "missing trust signals"
+  if (metric === "hero_clarity") return "unclear value proposition"
+  if (metric === "design_hierarchy") return "confusing visual hierarchy"
+  if (metric === "copywriting") return "ineffective copywriting"
+  return "high conversion friction"
+}
+
+function buildConversionSummary(analysis: RoastAnalysis) {
+  const entries = Object.entries(analysis.score_breakdown) as Array<[keyof RoastAnalysis["score_breakdown"], number]>
+  const weakest = entries
+    .sort((a, b) => a[1] - b[1])
+    .slice(0, 3)
+    .map(([key]) => metricIssueLabel(key))
+
+  return `Your landing page is likely losing conversions due to ${weakest.join(", ")}.`
+}
+
+function useAnimatedNumber(target: number, duration = 1200) {
+  const [value, setValue] = useState(0)
+
+  useEffect(() => {
+    let frameId = 0
+    const start = performance.now()
+
+    const tick = (now: number) => {
+      const elapsed = now - start
+      const progress = Math.min(elapsed / duration, 1)
+      setValue(Math.round(target * progress))
+      if (progress < 1) {
+        frameId = requestAnimationFrame(tick)
+      }
+    }
+
+    frameId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frameId)
+  }, [target, duration])
+
+  return value
 }
 
 function Card({ children }: { children: React.ReactNode }) {
@@ -81,21 +125,59 @@ function UrlInputPanel({
   )
 }
 
+const ANALYSIS_STEPS = [
+  "Analyzing headline clarity...",
+  "Checking call-to-action strength...",
+  "Scanning trust signals...",
+  "Evaluating design hierarchy...",
+  "Calculating conversion score...",
+  "Generating recommendations...",
+]
+
 function LoadingState({ url }: { url: string }) {
+  const [stepIndex, setStepIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setStepIndex((current) => Math.min(current + 1, ANALYSIS_STEPS.length - 1))
+    }, 700)
+    return () => clearInterval(id)
+  }, [url])
+
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-16 text-center">
+    <Card>
+      <SectionTitle>AI Analysis In Progress</SectionTitle>
+      <div className="space-y-3">
+        {ANALYSIS_STEPS.map((step, index) => {
+          const done = index < stepIndex
+          const active = index === stepIndex
+          return (
+            <div key={step} className="flex items-center gap-3 rounded-lg border border-neutral-800 bg-neutral-950 px-4 py-3">
+              <span
+                className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold ${
+                  done ? "bg-emerald-500/20 text-emerald-400" : active ? "bg-amber-500/20 text-amber-400" : "bg-slate-800 text-slate-500"
+                }`}
+              >
+                {done ? "✓" : index + 1}
+              </span>
+              <p className={`text-sm ${active ? "text-slate-100" : "text-slate-400"}`}>{step}</p>
+              {active && <span className="ml-auto h-2 w-2 animate-pulse rounded-full bg-amber-400" />}
+            </div>
+          )
+        })}
+      </div>
       <div className="relative h-8 w-8">
         <span className="absolute inset-0 rounded-full border-2 border-slate-800" />
         <span className="absolute inset-0 animate-spin rounded-full border-2 border-transparent border-t-slate-400" />
       </div>
-      <p className="text-sm text-slate-300">Analyzing landing page...</p>
-      {url && <p className="max-w-sm truncate text-xs text-slate-500">{url}</p>}
-    </div>
+      <p className="text-xs text-slate-500">Analyzing {url ? displayUrl(url) : "landing page"}</p>
+    </Card>
   )
 }
 
 function ScoreSection({ score }: { score: number }) {
   const { label, color } = gradeInfo(score)
+  const animatedScore = useAnimatedNumber(score, 1200)
 
   return (
     <Card>
@@ -103,9 +185,9 @@ function ScoreSection({ score }: { score: number }) {
       <div className="flex flex-col items-center gap-4 py-2">
         <div className="h-44 w-44">
           <CircularProgressbar
-            value={score}
+            value={animatedScore}
             maxValue={100}
-            text={`${score}`}
+            text={`${animatedScore}`}
             styles={buildStyles({
               pathColor: color,
               trailColor: "#262626",
@@ -123,20 +205,78 @@ function ScoreSection({ score }: { score: number }) {
   )
 }
 
+function SnapshotImage({ snapshot }: { snapshot: string }) {
+  const [state, setState] = useState<"loading" | "loaded" | "error">("loading")
+
+  return (
+    <div className="space-y-3">
+      {state === "loading" && (
+        <p className="text-sm text-slate-400">Capturing landing page snapshot...</p>
+      )}
+      <img
+        src={snapshot}
+        alt="Landing page snapshot"
+        className={`w-full rounded-xl border border-neutral-800 shadow-lg shadow-black/30 transition-opacity duration-300 ${
+          state === "loaded" ? "opacity-100" : "opacity-0"
+        }`}
+        loading="lazy"
+        onLoad={() => setState("loaded")}
+        onError={() => setState("error")}
+      />
+      {state === "error" && (
+        <p className="text-sm text-slate-400">Snapshot unavailable for this analysis.</p>
+      )}
+    </div>
+  )
+}
+
+function SnapshotSection({ snapshot }: { snapshot?: string }) {
+
+  return (
+    <Card>
+      <SectionTitle>Landing Page Snapshot</SectionTitle>
+      {snapshot ? (
+        <SnapshotImage key={snapshot} snapshot={snapshot} />
+      ) : (
+        <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 text-sm text-slate-400">
+          Snapshot unavailable for this analysis.
+        </div>
+      )}
+    </Card>
+  )
+}
+
 function TopFixesSection({ fixes }: { fixes: string[] }) {
   return (
     <Card>
-      <SectionTitle>Top 3 Fixes to Improve Conversion</SectionTitle>
+      <div className="flex items-center justify-between gap-3">
+        <SectionTitle>Top 3 Fixes to Improve Conversion</SectionTitle>
+        <span className="rounded-full border border-emerald-500/40 bg-emerald-500/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
+          High Impact
+        </span>
+      </div>
       <ol className="space-y-3">
         {fixes.map((fix, i) => (
-          <li key={i} className="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+          <li key={i} className="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-amber-500/40 hover:bg-neutral-900">
             <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-700 text-xs font-semibold text-slate-300">
               {i + 1}
+            </span>
+            <span className="mt-0.5 text-amber-300" aria-hidden="true">
+              ✦
             </span>
             <p className="text-sm leading-relaxed text-slate-200">{fix}</p>
           </li>
         ))}
       </ol>
+    </Card>
+  )
+}
+
+function ConversionSummarySection({ analysis }: { analysis: RoastAnalysis }) {
+  return (
+    <Card>
+      <SectionTitle>AI Conversion Summary</SectionTitle>
+      <p className="text-sm leading-relaxed text-slate-300">{buildConversionSummary(analysis)}</p>
     </Card>
   )
 }
@@ -157,14 +297,18 @@ function BreakdownSection({ analysis }: { analysis: RoastAnalysis }) {
       <div className="space-y-4">
         {BREAKDOWN_METRICS.map(({ key, label }) => {
           const value = analysis.score_breakdown[key]
+          const status = breakdownStatus(value)
           return (
             <div key={key}>
               <div className="mb-2 flex items-center justify-between">
                 <span className="text-sm font-medium text-slate-200">{label}</span>
-                <span className={`text-sm font-bold tabular-nums ${valueColor(value)}`}>{value}/100</span>
+                <div className="flex items-center gap-2">
+                  <span className={`text-xs font-semibold ${status.textClass}`}>{status.label}</span>
+                  <span className={`text-sm font-bold tabular-nums ${valueColor(value)}`}>{value}/100</span>
+                </div>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-slate-800">
-                <div className={`h-full rounded-full ${barColor(value)}`} style={{ width: `${value}%` }} />
+                <div className={`h-full rounded-full ${status.barClass}`} style={{ width: `${value}%` }} />
               </div>
             </div>
           )
@@ -305,10 +449,12 @@ function AnalyzePageContent() {
           {error && <ErrorBanner message={error} />}
 
           {isLoading ? (
-            <LoadingState url={activeUrl} />
+            <LoadingState key={activeUrl} url={activeUrl} />
           ) : analysis ? (
             <div className="space-y-6">
               <ScoreSection score={analysis.conversion_score} />
+              <SnapshotSection snapshot={analysis.page_snapshot || result?.page_snapshot} />
+              <ConversionSummarySection analysis={analysis} />
               <TopFixesSection fixes={(analysis.top_fixes && analysis.top_fixes.length === 3) ? analysis.top_fixes : analysis.improvements.slice(0, 3)} />
               <BreakdownSection analysis={analysis} />
               <KeyInsightsSection analysis={analysis} />

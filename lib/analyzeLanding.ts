@@ -18,6 +18,7 @@ export type AnalysisResponse = {
   cached?: boolean
   slug?: string
   roastUrl?: string
+  page_snapshot?: string | null
   title?: string
   headline?: string
   ctas?: RoastCta[]
@@ -132,6 +133,7 @@ const DEFAULT_ANALYSIS: RoastAnalysis = {
   improved_ctas: ["Start Free Trial", "See It in Action", "Get My Results"],
   rewritten_hero_paragraph:
     "Most landing pages bleed conversions because visitors can't figure out the value fast enough. This tool gives you an instant, expert-level audit so you can fix what's broken and ship a page that converts.",
+  page_snapshot: null,
   roast:
     "Your page has energy, but the value proposition plays hide-and-seek. Lead with one clear promise and one clear CTA so visitors know exactly what to do.",
 }
@@ -1530,6 +1532,7 @@ export async function analyzeLanding(
         cached: true,
         slug: cached.slug,
         roastUrl: `/r/${cached.slug}`,
+        page_snapshot: normalizedCached.page_snapshot,
         title: cached.title,
         headline: cached.headline,
         ctas: cached.ctas,
@@ -1576,12 +1579,23 @@ export async function analyzeLanding(
     const sitePages = fullSite ? await crawlSite(url, html, 5) : undefined
 
     // Screenshot capture (fails gracefully).
-    let screenshotBase64: string | null = null
+    let screenshotDataUrl: string | null = null
+    let screenshotBase64ForModel: string | null = null
     try {
       const captured = await captureScreenshot(url)
-      screenshotBase64 = captured && captured.length > 0 ? captured : null
+      if (captured && captured.length > 0) {
+        if (captured.startsWith("data:image/")) {
+          screenshotDataUrl = captured
+          const [, base64] = captured.split(",", 2)
+          screenshotBase64ForModel = base64 || null
+        } else {
+          screenshotBase64ForModel = captured
+          screenshotDataUrl = `data:image/jpeg;base64,${captured}`
+        }
+      }
     } catch {
-      screenshotBase64 = null
+      screenshotDataUrl = null
+      screenshotBase64ForModel = null
     }
 
     // AI call
@@ -1598,7 +1612,7 @@ export async function analyzeLanding(
     )
 
     const input =
-      screenshotBase64 != null
+      screenshotBase64ForModel != null
         ? [
             {
               role: "user" as const,
@@ -1609,7 +1623,8 @@ export async function analyzeLanding(
                 },
                 {
                   type: "input_image" as const,
-                  image_url: `data:image/png;base64,${screenshotBase64}`,
+                  image_url: `data:image/jpeg;base64,${screenshotBase64ForModel}`,
+                  detail: "auto" as const,
                 },
               ],
             },
@@ -1632,6 +1647,7 @@ export async function analyzeLanding(
     const analysis = {
       ...normalizeAIResponse(JSON.parse(completion.output_text)),
       ...domStructure,
+      page_snapshot: screenshotDataUrl ?? null,
     }
 
     // ── Competitor comparison (best-effort, fail gracefully) ───────────────────
@@ -1683,6 +1699,7 @@ export async function analyzeLanding(
       cached: false,
       slug,
       roastUrl: `/r/${slug}`,
+      page_snapshot: analysis.page_snapshot,
       title,
       headline: h1,
       ctas,
