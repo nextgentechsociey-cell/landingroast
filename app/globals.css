@@ -6,7 +6,7 @@
   --surface: #0f172a;
   --surface-2: #111827;
   --border: #1f2937;
-  --accent: #f59e0b;
+  --accent: #3b82f6;
 }
 
 @theme inline {
@@ -21,13 +21,13 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
   background-image:
-    radial-gradient(900px 500px at 10% -20%, rgba(245, 158, 11, 0.12), transparent 60%),
-    radial-gradient(700px 450px at 90% 0%, rgba(59, 130, 246, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 10% -20%, rgba(59, 130, 246, 0.14), transparent 60%),
+    radial-gradient(700px 450px at 90% 0%, rgba(37, 99, 235, 0.12), transparent 60%),
     linear-gradient(180deg, #020617 0%, #020617 40%, #030712 100%);
   min-height: 100vh;
 }
 
 ::selection {
-  background: rgba(245, 158, 11, 0.35);
+  background: rgba(59, 130, 246, 0.4);
   color: #fff;
 }

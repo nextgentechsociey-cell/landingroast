@@ -26,8 +26,8 @@ function gradeInfo(score: number): { label: string; color: string } {
 }
 
 function valueColor(v: number) {
-  if (v > 60) return "text-green-400"
-  if (v >= 40) return "text-orange-400"
+  if (v > 60) return "text-emerald-400"
+  if (v >= 40) return "text-blue-300"
   return "text-red-400"
 }
 
@@ -36,7 +36,7 @@ function breakdownStatus(v: number): { label: "Good" | "Needs Improvement" | "Ne
     return { label: "Good", barClass: "bg-green-500", textClass: "text-green-400" }
   }
   if (v >= 40) {
-    return { label: "Needs Improvement", barClass: "bg-orange-500", textClass: "text-orange-400" }
+    return { label: "Needs Improvement", barClass: "bg-blue-500", textClass: "text-blue-300" }
   }
   return { label: "Needs Attention", barClass: "bg-red-500", textClass: "text-red-400" }
 }
@@ -168,13 +168,13 @@ function LoadingState({ url }: { url: string }) {
             <div key={step} className="flex items-center gap-3 rounded-lg border border-neutral-800 bg-neutral-950 px-4 py-3">
               <span
                 className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold ${
-                  done ? "bg-emerald-500/20 text-emerald-400" : active ? "bg-amber-500/20 text-amber-400" : "bg-slate-800 text-slate-500"
+                  done ? "bg-emerald-500/20 text-emerald-400" : active ? "bg-blue-500/20 text-blue-300" : "bg-slate-800 text-slate-500"
                 }`}
               >
                 {done ? "✓" : index + 1}
               </span>
               <p className={`text-sm ${active ? "text-slate-100" : "text-slate-400"}`}>{step}</p>
-              {active && <span className="ml-auto h-2 w-2 animate-pulse rounded-full bg-amber-400" />}
+              {active && <span className="ml-auto h-2 w-2 animate-pulse rounded-full bg-blue-400" />}
             </div>
           )
         })}
@@ -336,11 +336,11 @@ function TopFixesSection({ fixes }: { fixes: string[] }) {
       </div>
       <ol className="space-y-3">
         {fixes.map((fix, i) => (
-          <li key={i} className="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-amber-500/40 hover:bg-neutral-900">
+          <li key={i} className="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-blue-500/40 hover:bg-neutral-900">
             <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-700 text-xs font-semibold text-slate-300">
               {i + 1}
             </span>
-            <span className="mt-0.5 text-amber-300" aria-hidden="true">
+            <span className="mt-0.5 text-blue-300" aria-hidden="true">
               ✦
             </span>
             <p className="text-sm leading-relaxed text-slate-200">{fix}</p>
@@ -523,10 +523,18 @@ function AnalyzePageContent() {
     <main className="min-h-screen text-slate-100">
       <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 sm:py-10">
         <header className="mb-6 flex items-center justify-between rounded-2xl border border-slate-800/80 bg-slate-900/60 px-4 py-3 backdrop-blur">
-          <Link href="/" className="text-lg font-semibold tracking-tight text-white transition hover:text-slate-300">
-            LandingRoast
+          <div className="flex min-w-0 items-center gap-4">
+            <Link href="/" className="text-lg font-semibold tracking-tight text-white transition hover:text-slate-300">
+              LandingRoast
+            </Link>
+            {activeUrl && <p className="max-w-[50%] truncate text-xs text-slate-500">{displayUrl(activeUrl)}</p>}
+          </div>
+          <Link
+            href="/dashboard"
+            className="rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:border-slate-500 hover:bg-slate-800"
+          >
+            Dashboard
           </Link>
-          {activeUrl && <p className="max-w-[50%] truncate text-xs text-slate-500">{displayUrl(activeUrl)}</p>}
         </header>
 
         <div className="space-y-6">
