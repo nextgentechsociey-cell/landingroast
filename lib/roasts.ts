@@ -29,6 +29,7 @@ export type RoastAnalysis = {
   weak_elements: string[]
   strong_elements: string[]
   key_insights: string[]
+  top_fixes?: string[]
   headline_feedback: string
   cta_feedback: string
   trust_feedback: string

@@ -123,6 +123,24 @@ function ScoreSection({ score }: { score: number }) {
   )
 }
 
+function TopFixesSection({ fixes }: { fixes: string[] }) {
+  return (
+    <Card>
+      <SectionTitle>Top 3 Fixes to Improve Conversion</SectionTitle>
+      <ol className="space-y-3">
+        {fixes.map((fix, i) => (
+          <li key={i} className="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-950 p-4">
+            <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-slate-700 text-xs font-semibold text-slate-300">
+              {i + 1}
+            </span>
+            <p className="text-sm leading-relaxed text-slate-200">{fix}</p>
+          </li>
+        ))}
+      </ol>
+    </Card>
+  )
+}
+
 const BREAKDOWN_METRICS = [
   { key: "hero_clarity" as const, label: "Hero Clarity" },
   { key: "cta_strength" as const, label: "CTA Strength" },
@@ -291,6 +309,7 @@ function AnalyzePageContent() {
           ) : analysis ? (
             <div className="space-y-6">
               <ScoreSection score={analysis.conversion_score} />
+              <TopFixesSection fixes={(analysis.top_fixes && analysis.top_fixes.length === 3) ? analysis.top_fixes : analysis.improvements.slice(0, 3)} />
               <BreakdownSection analysis={analysis} />
               <KeyInsightsSection analysis={analysis} />
               <ConversionFixesSection fixes={analysis.conversion_fixes} />

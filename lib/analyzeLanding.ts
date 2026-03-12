@@ -70,6 +70,11 @@ const DEFAULT_ANALYSIS: RoastAnalysis = {
     "Competing CTAs create decision friction and dilute the primary action.",
     "Trust proof is too weak near the main conversion moment.",
   ],
+  top_fixes: [
+    "Rewrite the headline to clearly state the main benefit.",
+    "Replace generic CTAs with benefit-driven action language.",
+    "Add trust signals near the primary CTA (logos, testimonials, guarantees).",
+  ],
   headline_feedback:
     "The headline needs a clearer value proposition with stronger specificity.",
   cta_feedback:
@@ -141,6 +146,7 @@ type AIScores = {
   design_hierarchy: number
   friction: number
   key_insights: string[]
+  top_fixes: string[]
   headline_feedback: string
   cta_feedback: string
   trust_feedback: string
@@ -845,6 +851,11 @@ Return JSON only. No markdown, no code fences, no commentary before or after the
     "<1 sentence: second biggest conversion problem>",
     "<1 sentence: third biggest conversion problem>"
   ],
+  "top_fixes": [
+    "<high-impact immediate fix>",
+    "<second high-impact immediate fix>",
+    "<third high-impact immediate fix>"
+  ],
   "headline_feedback": "<2–3 sentences: what works, what to fix, one concrete suggestion>",
   "cta_feedback": "<2–3 sentences: what works, what to fix, one concrete suggestion>",
   "trust_feedback": "<2–3 sentences on credibility gaps and one concrete trust signal to add>",
@@ -933,6 +944,7 @@ RULES:
 - Final conversion score is computed server-side using weighted scoring:
   hero_clarity 20%, cta_strength 20%, trust_signals 15%, copywriting 20%, design_hierarchy 15%, friction 10%
 - key_insights must contain exactly 3 insights and each insight must be exactly one sentence
+- Generate a section called "top_fixes" with exactly 3 high-impact conversion improvements that the user should implement immediately.
 - Each feedback field must include at least one specific, actionable suggestion (no generic advice)
 - improved_headlines must communicate a concrete benefit — no puns or vague taglines
 - improved_ctas must each start with a strong action verb (Get, Start, Try, Unlock, Claim, Build, etc.)
@@ -957,6 +969,12 @@ const AI_SCHEMA = {
     design_hierarchy: { type: "integer" as const, minimum: 0, maximum: 100 },
     friction: { type: "integer" as const, minimum: 0, maximum: 100 },
     key_insights: {
+      type: "array" as const,
+      minItems: 3,
+      maxItems: 3,
+      items: { type: "string" as const, minLength: 1 },
+    },
+    top_fixes: {
       type: "array" as const,
       minItems: 3,
       maxItems: 3,
@@ -1097,6 +1115,7 @@ const AI_SCHEMA = {
     "design_hierarchy",
     "friction",
     "key_insights",
+    "top_fixes",
     "headline_feedback",
     "cta_feedback",
     "trust_feedback",
@@ -1395,6 +1414,7 @@ function normalizeStoredAnalysis(raw: RoastAnalysis): RoastAnalysis {
       ? raw.strong_elements.map((v) => safeStr(v, "")).filter(Boolean)
       : DEFAULT_ANALYSIS.strong_elements,
     key_insights: safeInsights(raw.key_insights, DEFAULT_ANALYSIS.key_insights),
+    top_fixes: safeStrArray(raw.top_fixes, DEFAULT_ANALYSIS.top_fixes ?? [], 3),
     roast: limitSentences(safeStr(raw.roast, DEFAULT_ANALYSIS.roast), 2),
   }
 }
@@ -1443,6 +1463,7 @@ function normalizeAIResponse(raw: unknown): RoastAnalysis {
     weak_elements: DEFAULT_ANALYSIS.weak_elements,
     strong_elements: DEFAULT_ANALYSIS.strong_elements,
     key_insights: safeInsights(v.key_insights, DEFAULT_ANALYSIS.key_insights),
+    top_fixes: safeStrArray(v.top_fixes, DEFAULT_ANALYSIS.top_fixes ?? [], 3),
     headline_feedback: safeStr(
       v.headline_feedback,
       DEFAULT_ANALYSIS.headline_feedback,
